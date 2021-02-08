@@ -5,7 +5,7 @@ import colours from '../../config/colours';
 
 const DisplayNumResults = styled.div`
   color: ${colours.primaryText};
-  background-color: #1E1D33;
+  background-color: ${colours.backgroundDark};
   display: inline-block;
   border-radius: 1.2em;
   margin-top: 20px;

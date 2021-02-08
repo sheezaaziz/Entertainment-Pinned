@@ -3,5 +3,6 @@ export default {
   orange: '#ff8500',
   primaryText: '#EEDFF8',
   secondaryText: '#8E8594',
-  backgroundLight: '#413F5C;'
+  backgroundLight: '#413F5C;',
+  backgroundDark: '#1E1D33',
 }
