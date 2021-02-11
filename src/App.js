@@ -7,6 +7,7 @@ import SearchInput from './components/SearchInput/SearchInput';
 import CardsDisplay from './sections/CardsDisplay/CardsDisplay';
 import LeftMenu from './sections/LeftMenu/LeftMenu';
 import MainPage from './sections/MainPage/MainPage';
+import RightMenu from './sections/RightMenu/RightMenu';
 
 const AppDisplay = styled.div`
   display: flex;
@@ -18,6 +19,7 @@ export default function App() {
     <AppDisplay>
       <LeftMenu/>
       <MainPage/>
+      <RightMenu/>
     </AppDisplay>
   );
 }
