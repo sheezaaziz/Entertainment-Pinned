@@ -12,6 +12,12 @@ export const CardDiv = styled.div`
   justify-content: flex-start;
   float: left;
 `;
+export const CardDivPreview = styled(CardDiv)`
+  margin: auto;
+  padding: 0;
+  margin-bottom: 10px;
+`;
+
 
 export const CardImg = styled.img`
   float: left;
@@ -20,6 +26,10 @@ export const CardImg = styled.img`
   object-fit: cover;
   border-radius: 1.3em;
   box-shadow: 0 0 8px ${colours.backgroundLight};
+`;
+export const CardImgPreview = styled(CardImg)`
+  width: 90%;
+  margin: auto;
 `;
 
 export const CardDetails = styled.div`
@@ -90,4 +100,10 @@ export const CardBtn = styled.button`
   }
 
   background-color: ${props => props.nominate ? colours.orange : colours.blue}
+`;
+export const CardBtnPreview = styled(CardBtn)`
+  width: 95%;
+  background-color: ${colours.danger};
+  opacity: 1;
+  margin: auto;
 `;
