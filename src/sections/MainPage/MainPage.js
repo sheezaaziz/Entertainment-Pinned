@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { MainPageContainer } from './styles';
-import SearchInput from '../../components/SearchInput/SearchInput';
 import Title from '../../components/Title/Title';
+import SearchInput from '../../components/SearchInput/SearchInput';
 import NumResults from '../../components/NumResults/NumResults';
 import CardsDisplay from '../CardsDisplay/CardsDisplay';
 

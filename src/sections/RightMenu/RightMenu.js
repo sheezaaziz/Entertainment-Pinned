@@ -1,9 +1,6 @@
 import React from 'react';
 
 import { RightMenuContainer, ScrollableContainer } from './styles';
-import Title from '../../components/Title/Title';
-import CardPreview from '../../components/Card/CardPreview';
-import SocialIcon from '../../components/SocialIcon/SocialIcon';
 import SocialIconsRow from '../../components/SocialIconsRow/SocialIconsRow';
 import CardPreviewDisplay from '../CardsDisplay/CardPreviewDisplay';
 

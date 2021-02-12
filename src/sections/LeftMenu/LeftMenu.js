@@ -5,7 +5,7 @@ import colours from '../../config/colours';
 import MenuIcon from '../../components/MenuIcon/MenuIcon';
 
 const LeftMenuContainer = styled.div`
-  background-color: #1E1D33;
+  background-color: ${colours.backgroundDark};
   width: 6%;
   text-align: center;
   flex: 1;
