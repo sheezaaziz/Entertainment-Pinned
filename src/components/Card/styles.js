@@ -1,16 +1,24 @@
 import styled from 'styled-components';
 
 import colours from '../../config/colours';
+import { device } from '../../config/device';
 
 export const CardDiv = styled.div`
-  margin-right: 35px;
-  margin-left: 35px;
-  margin-top: 10px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  float: left;
+  @media ${device.mobileS} {
+    margin: auto;
+    padding: 20px;
+  }
+
+  @media ${device.laptop} {
+    margin-right: 35px;
+    margin-left: 35px;
+    margin-top: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    float: left;
+  }
 `;
 export const CardDivPreview = styled(CardDiv)`
   margin: auto;
@@ -20,12 +28,19 @@ export const CardDivPreview = styled(CardDiv)`
 
 
 export const CardImg = styled.img`
-  float: left;
-  width:  240px;
-  height: 320px;
-  object-fit: cover;
-  border-radius: 1.3em;
-  box-shadow: 0 0 8px ${colours.backgroundLight};
+  @media ${device.mobileS} {
+    width: 320px;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 1.3em;
+    box-shadow: 0 0 8px ${colours.backgroundLight};
+  }
+
+  @media ${device.laptop} {
+    float: left;
+    width: 240px;
+    height: 320px;
+  }
 `;
 export const CardImgPreview = styled(CardImg)`
   width: 90%;
@@ -85,21 +100,40 @@ export const CardBtns = styled.div`
 `;
 
 export const CardBtn = styled.button`
-  padding: 10px;
-  width: 100px;
-  border: none;
-  font-size: 1em;
-  border-radius: 2em;
-  cursor: pointer;
-  opacity: 0.9;
-  color: ${colours.primaryText};
+  @media ${device.mobileS} {
+    width: 50%;
+    padding: 10px;
+    border: none;
+    font-size: 1em;
+    border-radius: 2em;
+    cursor: pointer;
+    opacity: 0.9;
+    color: ${colours.primaryText};
 
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 15px ${colours.backgroundLight};
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 15px ${colours.backgroundLight};
+    }
+
+    background-color: ${({Order}) =>
+    Order === 1 && `${colours.blue}` ||
+    Order === 2 && `${colours.orange}` ||
+    `${colours.backgroundLight}`
+    };
+
+    // Temp quickfix soln.
+    ${({ Order }) => Order == 1 && `
+      margin-right: 10px;
+    ` || Order == 2 && `
+      margin-left: 10px;
+    `}
+
   }
 
-  background-color: ${props => props.nominate ? colours.orange : colours.blue}
+  @media ${device.laptop} {
+    width: 100px;
+    margin: 0;
+  }
 `;
 export const CardBtnPreview = styled(CardBtn)`
   width: 95%;
@@ -107,3 +141,4 @@ export const CardBtnPreview = styled(CardBtn)`
   opacity: 1;
   margin: auto;
 `;
+// background-color: ${props => props.nominate ? colours.orange : colours.blue}

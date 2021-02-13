@@ -6,6 +6,7 @@ export default {
   secondaryText: '#8E8594',
   backgroundLight: '#413F5C;',
   backgroundDark: '#1E1D33',
+  secondaryBackground: '#5B4D88',
   facebook: '#4267B2',
   twitter: '#1DA1F2',
   link: '#FF00BF',

@@ -17,8 +17,8 @@ export default function Card() {
         </CardDetailsMore>
       </CardDetails>
       <CardBtns>
-        <CardBtn><i className="fas fa-bookmark"></i></CardBtn>
-        <CardBtn nominate><i className="fas fa-trophy"></i></CardBtn>
+        <CardBtn Order={1}><i className="fas fa-bookmark"></i></CardBtn>
+        <CardBtn Order={2}><i className="fas fa-trophy"></i></CardBtn>
       </CardBtns>
     </CardDiv>
   )

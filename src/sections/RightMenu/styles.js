@@ -1,11 +1,20 @@
 import styled from 'styled-components';
 
+import colours from '../../config/colours';
+import { device } from '../../config/device';
+
 export const RightMenuContainer = styled.div`
-  background-color: #7261AB;
-  background-color: #5B4D88;
-  text-align: center;
-  flex: 2;
-  position: relative;
+  @media ${device.mobileS} {
+    display: none;
+  }
+
+  @media ${device.laptop} {
+    display: block;
+    background-color: ${colours.secondaryBackground};
+    text-align: center;
+    flex: 2;
+    position: relative;
+  }
 `;
 
 export const ScrollableContainer = styled.div`
