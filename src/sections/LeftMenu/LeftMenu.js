@@ -1,22 +1,17 @@
 import React from 'react';
-import styled from 'styled-components';
 
-import colours from '../../config/colours';
 import MenuIcon from '../../components/MenuIcon/MenuIcon';
-
-const LeftMenuContainer = styled.div`
-  background-color: ${colours.backgroundDark};
-  width: 6%;
-  text-align: center;
-  flex: 1;
-`;
+import { LeftMenuContainer, Container } from './styles';
 
 const iconsClass = ['fas fa-bookmark', 'far fa-id-badge']
 
 export default function LeftMenu() {
   return (
     <LeftMenuContainer>
-      <MenuIcon iconsClass={iconsClass}/>
+      <h1><i class="fas fa-ticket-alt"></i></h1>
+      <Container>
+        <MenuIcon iconsClass={iconsClass}/>
+      </Container>
     </LeftMenuContainer>
   )
 }

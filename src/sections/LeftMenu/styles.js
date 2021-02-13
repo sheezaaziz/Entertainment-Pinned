@@ -7,3 +7,7 @@ export const LeftMenuContainer = styled.div`
   text-align: center;
   flex: 1;
 `;
+
+export const Container = styled.div`
+  margin-top: 50px;
+`;
