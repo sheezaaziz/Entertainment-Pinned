@@ -28,7 +28,7 @@ export default function GetMovies() {
   }
 
   const getResults = async (movieSearch, pageNum) => {
-    const config = { params: {'s': movieSearch, 'page': pageNum, 'type': 'movie'} };
+    const config = { params: {'s': movieSearch, 'page': pageNum} };
     let res = await axios.get(`https://www.omdbapi.com/?apikey=${process.env.REACT_APP_MOVIE_KEY}`, config);
     return res.data;
   }
