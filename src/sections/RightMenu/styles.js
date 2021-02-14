@@ -20,4 +20,6 @@ export const RightMenuContainer = styled.div`
 export const ScrollableContainer = styled.div`
   height: 78%;
   overflow: scroll;
+  overflow-x: hidden;
+  text-align: center;
 `;

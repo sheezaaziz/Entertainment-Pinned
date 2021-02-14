@@ -4,7 +4,6 @@ import { device } from '../../config/device';
 
 export const CardsDisplayContainer = styled.div`
   @media ${device.mobileS} {
-    width: 100%;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
