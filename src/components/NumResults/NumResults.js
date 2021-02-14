@@ -2,8 +2,8 @@ import React from 'react';
 
 import { DisplayNumResults } from './styles';
 
-export default function NumResults({ num }) {
+export default function NumResults({ count }) {
   return (
-    <DisplayNumResults>{ num } results</DisplayNumResults>
+    <DisplayNumResults>{ count } results</DisplayNumResults>
   )
 }
