@@ -46,6 +46,6 @@ export default function GetMovies() {
   }, [movieSearch]);
 
   return (
-    <MainPage querySearch={movieSearch} setQuerySearch={setMovieSearch} count={count} results={movies}></MainPage>
+    <MainPage querySearch={movieSearch} setQuerySearch={setMovieSearch} count={count} results={movies} loading={loading}></MainPage>
   )
 }
