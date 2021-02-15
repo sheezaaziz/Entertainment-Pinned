@@ -1,20 +1,24 @@
 import React from 'react';
 
 import { CardDivPreview, CardImgPreview, CardDetails, CardDetailsDescr, CardTitle, CardSubtitle, CardDetailsMore, CardRating, CardExternalLink, CardBtns, CardBtnPreview } from './styles';
+import Image_Unavailable from './Image_Unavailable.jpg';
 
-
-export default function CardPreview() {
+export default function CardPreview({ title, subtitle, type, img, id, removeFromList }) {
+  let externalLink = `https://www.imdb.com/title/${id}`;
+  if (img === 'N/A') {
+    img = Image_Unavailable;
+  }
   return (
     <CardDivPreview>
-      <CardImgPreview src="https://source.unsplash.com/random" alt=""/>
+      <CardImgPreview src={img} alt={title}/>
       <CardDetails>
         <CardDetailsDescr>
-          <CardTitle>Inception</CardTitle>
-          <CardSubtitle>2019</CardSubtitle>
+          <CardTitle>{ title }</CardTitle>
+          <CardSubtitle>{ subtitle }</CardSubtitle>
         </CardDetailsDescr>
         <CardDetailsMore>
-          <CardRating>4.5/10</CardRating>
-          <CardExternalLink href="#">info <i className="fas fa-external-link-alt"></i></CardExternalLink>
+          <CardRating>{ type }</CardRating>
+          <CardExternalLink href={externalLink} target="_blank">info <i className="fas fa-external-link-alt"></i></CardExternalLink>
         </CardDetailsMore>
       </CardDetails>
       <CardBtns>

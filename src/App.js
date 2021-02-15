@@ -6,6 +6,8 @@ import LeftMenu from './sections/LeftMenu/LeftMenu';
 import MainPage from './sections/MainPage/MainPage';
 import RightMenu from './sections/RightMenu/RightMenu';
 import GetMovies from './controllers/GetMovies';
+import AppController from './controllers/AppController';
+
 
 const AppDisplay = styled.div`
   display: flex;
@@ -16,11 +18,7 @@ export default function App() {
   return (
     <div>
       <MobileNav/>
-      <AppDisplay>
-        <LeftMenu/>
-        <GetMovies/>
-        <RightMenu/>
-      </AppDisplay>
+      <AppController/>
     </div>
 
   );

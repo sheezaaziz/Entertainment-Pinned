@@ -8,8 +8,7 @@ export default function Card({ title, subtitle, type, img, id, addToList, disabl
   if (img === 'N/A') {
     img = Image_Unavailable;
   }
-
-
+  
   return (
     <CardDiv>
       <CardImg src={img} alt={title}/>
