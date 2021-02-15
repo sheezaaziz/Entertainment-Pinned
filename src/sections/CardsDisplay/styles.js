@@ -15,7 +15,7 @@ export const CardsDisplayContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    display: inline-block;
+    display: block;
     margin: auto;
   }
 `;

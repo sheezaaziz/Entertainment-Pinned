@@ -128,6 +128,16 @@ export const CardBtn = styled.button`
       margin-left: 10px;
     `}
 
+    &:disabled {
+      background-color: #cccccc;
+      color: #666666;
+    }
+
+    &:disabled:hover {
+      transform: none;
+      box-shadow: none;
+      cursor: default;
+    }
   }
 
   @media ${device.laptop} {

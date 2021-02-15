@@ -8,7 +8,7 @@ let socialMediaList = {'facebook': 'fab fa-facebook-f', 'twitter': 'fab fa-twitt
 
 let cards = [1,2,3];
 
-export default function RightMenu() {
+export default function RightMenu({ cards }) {
   return (
     <RightMenuContainer>
       <h1>Nominations</h1>
