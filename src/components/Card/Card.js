@@ -1,14 +1,15 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import { CardDiv, CardImg, CardDetails, CardDetailsDescr, CardTitle, CardSubtitle, CardDetailsMore, CardRating, CardExternalLink, CardBtns, CardBtn } from './styles';
 import Image_Unavailable from './Image_Unavailable.jpg';
 
-export default function Card({ title, subtitle, type, img, id, addToList, disabled }) {
+export default function Card({ title, subtitle, type, img, id, addToList, disabled, preview }) {
   let externalLink = `https://www.imdb.com/title/${id}`;
   if (img === 'N/A') {
     img = Image_Unavailable;
   }
-  
+
   return (
     <CardDiv>
       <CardImg src={img} alt={title}/>

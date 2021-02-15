@@ -13,7 +13,8 @@ export default function CardsDisplay({ cards, addToList, disabled }) {
       img={card.Poster}
       id={card.imdbID}
       addToList={addToList}
-      disabled={disabled}/>
+      disabled={disabled}
+      preview={false}/>
   ))
   return (
     <CardsDisplayContainer>{allCards}</CardsDisplayContainer>

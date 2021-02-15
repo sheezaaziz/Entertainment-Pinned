@@ -22,7 +22,10 @@ export default function CardPreview({ title, subtitle, type, img, id, removeFrom
         </CardDetailsMore>
       </CardDetails>
       <CardBtns>
-        <CardBtnPreview nominate><i className="fas fa-times"></i></CardBtnPreview>
+        <CardBtnPreview
+          onClick={() => removeFromList(id)}>
+          <i className="fas fa-times"></i>
+        </CardBtnPreview>
       </CardBtns>
     </CardDivPreview>
   )
