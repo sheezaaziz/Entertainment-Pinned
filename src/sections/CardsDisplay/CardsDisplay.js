@@ -3,7 +3,7 @@ import React from 'react';
 import Card from '../../components/Card/Card';
 import { CardsDisplayContainer } from './styles';
 
-export default function CardsDisplay({ cards, addToList, disabled }) {
+export default function CardsDisplay({ cards, addToList, disabled, removeFromList }) {
   console.log(cards);
   let allCards = cards.map((card, index) => (
     <Card
@@ -14,7 +14,7 @@ export default function CardsDisplay({ cards, addToList, disabled }) {
       id={card.imdbID}
       addToList={addToList}
       disabled={disabled}
-      preview={false}/>
+      removeFromList={removeFromList}/>
   ))
   return (
     <CardsDisplayContainer>{allCards}</CardsDisplayContainer>

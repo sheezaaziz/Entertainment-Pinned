@@ -81,7 +81,7 @@ export default function GetMovies() {
   return (
     <Container>
       <LeftMenu/>
-      <MainPage querySearch={movieSearch} setQuerySearch={setMovieSearch} count={count} results={movies} loading={loading} addToList={addNominee} disabled={disabled}></MainPage>
+      <MainPage querySearch={movieSearch} setQuerySearch={setMovieSearch} count={count} results={movies} loading={loading} addToList={addNominee} disabled={disabled} removeFromList={removeNominee}></MainPage>
       <RightMenu cards={nominations} removeFromList={removeNominee} message={message}/>
     </Container>
   )

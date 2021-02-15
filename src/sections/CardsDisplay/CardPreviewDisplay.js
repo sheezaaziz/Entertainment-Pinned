@@ -1,11 +1,11 @@
 import React from 'react';
 
+import { CardPreviewDisplayContainer } from './styles';
 import CardPreview from '../../components/Card/CardPreview';
 
 export default function CardPreviewDisplay({ cards, removeFromList }) {
   console.log(cards);
   let allCards = cards.map((card, index) => (
-    // console.log(card.Title, card.Year, card.Type, card.Poster, card.imdbID)
     <CardPreview
       title={card.Title}
       subtitle={card.Year}
@@ -15,8 +15,8 @@ export default function CardPreviewDisplay({ cards, removeFromList }) {
       removeFromList={removeFromList}/>
   ))
   return (
-    <div>
+    <CardPreviewDisplayContainer>
       {allCards}
-    </div>
+    </CardPreviewDisplayContainer>
   )
 }

@@ -19,3 +19,9 @@ export const CardsDisplayContainer = styled.div`
     margin: auto;
   }
 `;
+
+export const CardPreviewDisplayContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+`

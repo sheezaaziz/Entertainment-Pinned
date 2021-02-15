@@ -22,7 +22,6 @@ export const CardDiv = styled.div`
 `;
 export const CardDivPreview = styled(CardDiv)`
   margin: auto;
-  padding: 0;
   margin-bottom: 10px;
 `;
 
@@ -43,7 +42,8 @@ export const CardImg = styled.img`
   }
 `;
 export const CardImgPreview = styled(CardImg)`
-  width: 90%;
+  width: 220px;
+  height: 320px;
   margin: auto;
 `;
 
@@ -115,10 +115,10 @@ export const CardBtn = styled.button`
       box-shadow: 0 0 15px ${colours.backgroundLight};
     }
 
-    background-color: ${({Order}) =>
+    background-color: ${({Order, Danger}) =>
     Order === 1 && `${colours.blue}` ||
-    Order === 2 && `${colours.orange}` ||
-    `${colours.backgroundLight}`
+    Order === 2 && Danger === true && `${colours.danger}` ||
+    `${colours.orange}`
     };
 
     // Temp quickfix soln.
@@ -128,16 +128,16 @@ export const CardBtn = styled.button`
       margin-left: 10px;
     `}
 
-    &:disabled {
-      background-color: #cccccc;
-      color: #666666;
-    }
-
-    &:disabled:hover {
-      transform: none;
-      box-shadow: none;
-      cursor: default;
-    }
+    // &:disabled {
+    //   background-color: #cccccc;
+    //   color: #666666;
+    // }
+    //
+    // &:disabled:hover {
+    //   transform: none;
+    //   box-shadow: none;
+    //   cursor: default;
+    // }
   }
 
   @media ${device.laptop} {

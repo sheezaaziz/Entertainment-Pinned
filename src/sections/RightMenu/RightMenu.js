@@ -11,7 +11,7 @@ let cards = [1,2,3];
 export default function RightMenu({ cards, removeFromList, message }) {
   return (
     <RightMenuContainer>
-      <h1>Nominations</h1>
+      <h1>Shoutouts</h1>
       <ScrollableContainer>
         <CardPreviewDisplay cards={cards} removeFromList={removeFromList}/>
       </ScrollableContainer>
