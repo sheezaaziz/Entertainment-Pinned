@@ -4,18 +4,14 @@ import { RightMenuContainer, ScrollableContainer } from './styles';
 import SocialIconsRow from '../../components/SocialIconsRow/SocialIconsRow';
 import CardPreviewDisplay from '../CardsDisplay/CardPreviewDisplay';
 
-let socialMediaList = {'facebook': 'fab fa-facebook-f', 'twitter': 'fab fa-twitter', 'email': 'fas fa-paper-plane', 'link': 'fas fa-link'};
-
-let cards = [1,2,3];
-
-export default function RightMenu({ cards, removeFromList, message }) {
+export default function RightMenu({ cards, removeFromList, message, socialIcons, postInfo }) {
   return (
     <RightMenuContainer>
-      <h1>Shoutouts</h1>
+      <h1>Pinned</h1>
       <ScrollableContainer>
         <CardPreviewDisplay cards={cards} removeFromList={removeFromList}/>
       </ScrollableContainer>
-      <SocialIconsRow socialMediaList={socialMediaList}/>
+      <SocialIconsRow socialIcons={socialIcons} postInfo={postInfo}/>
     </RightMenuContainer>
   )
 }

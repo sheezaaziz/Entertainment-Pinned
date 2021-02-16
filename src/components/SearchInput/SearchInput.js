@@ -18,7 +18,7 @@ export default function SearchInput({ setQuerySearch }) {
         placeholder="Search"
         aria-label="Search (press enter)"
         name="query"
-        ref = { register }/>
+        ref={ register }/>
     </form>
   )
 }

@@ -73,6 +73,35 @@ export default function GetMovies() {
     setNominations(newNominations);
   }
 
+  const getPost = () => {
+    let post = 'Check out my pinned entertainment list:\n';
+    nominations.forEach((nomination) => {
+      post += `${nomination.Title}\n`;
+    })
+    post += '\nUse sheezaaziz.com to pin and save your favourite digital entertainment sources.';
+    return post;
+  }
+
+  let postInfo = {
+    'facebook': {
+      'url': 'sheezaaziz.com',
+      'post': getPost(),
+      'hashtag': '#EntertainmentPinned'
+    },
+    'twitter': {
+      'url': ' ',
+      'post': getPost(),
+      'hashtags': ['EntertainmentPinned']
+    },
+    'email': {
+      'url': '',
+      'subject': 'My Pinned Entertainment List',
+      'post': getPost()
+    }
+  }
+
+  let socialIcons = {'facebook': 'fab fa-facebook-f', 'twitter': 'fab fa-twitter', 'email': 'fas fa-paper-plane', 'link': 'fas fa-link'};
+  
   const Container = styled.div`
     display: flex;
     height: 100vh;
@@ -82,7 +111,7 @@ export default function GetMovies() {
     <Container>
       <LeftMenu/>
       <MainPage querySearch={movieSearch} setQuerySearch={setMovieSearch} count={count} results={movies} loading={loading} addToList={addNominee} disabled={disabled} removeFromList={removeNominee}></MainPage>
-      <RightMenu cards={nominations} removeFromList={removeNominee} message={message}/>
+      <RightMenu cards={nominations} removeFromList={removeNominee} message={message} socialIcons={socialIcons} postInfo={postInfo}/>
     </Container>
   )
 }
