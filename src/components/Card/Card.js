@@ -9,8 +9,6 @@ export default function Card({ title, subtitle, type, img, id, addToList, disabl
   if (img === 'N/A') {
     img = Image_Unavailable;
   }
-
-  console.log(disabled(id));
   return (
     <CardDiv>
       <CardImg src={img} alt={title}/>
@@ -49,6 +47,9 @@ export default function Card({ title, subtitle, type, img, id, addToList, disabl
     </CardDiv>
   )
 }
+
+// onClick={() => addToList(title, subtitle, img, type, id)}
+
 // <CardBtn
 //   Order={2}
 //   disabled={disabled(id)}

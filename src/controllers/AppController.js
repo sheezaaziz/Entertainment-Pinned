@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import ReactNotification from 'react-notifications-component'
+import { store } from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css'
 
 import LeftMenu from '../sections/LeftMenu/LeftMenu';
 import MainPage from '../sections/MainPage/MainPage';
@@ -12,7 +15,8 @@ export default function GetMovies() {
   const [movieSearch, setMovieSearch] = useState('');
   const [count, setCount] = useState(0);
   const [nominations, setNominations] = useState([]);
-  const [message, setMessage] = useState('');
+  // quick temp fix. unsure why it has to be an array.
+  const [notif, setNotif] = useState([]);
 
   let increment = 0;
 
@@ -49,29 +53,108 @@ export default function GetMovies() {
     setLoading(false);
   }, [movieSearch]);
 
-// title, subtitle, img, type, id
+
+  // title, subtitle, img, type, id
   const addNominee = (movieTitle, releaseYear, imgSrc, type, imdbID) => {
     if (nominations.length < 5) {
       let newNominations = [...nominations, {Title: movieTitle, Year: releaseYear, Poster: imgSrc, Type: type, imdbID: imdbID}];
       setNominations(newNominations);
-    }
-    if (nominations.length == 4) {
-      setMessage("Congrats, you have added 5 nominations! Please consider sharing your nominations list.");
+      // bc can not call addSuccessNotif fcn and have it create new notif directly from here. unsure why...
+      setNotif(['add'])
+    }  else {
+      setNotif(['still']);
     }
   }
 
   const disabled = (imdbID) => {
-    console.log(imdbID);
     return nominations.find(nomination => nomination.imdbID ===  imdbID) !== undefined;
   }
 
   const removeNominee = (imdbID) => {
-    setMessage("");
     let newNominations = nominations.filter(
       (nominee) => nominee.imdbID !== imdbID
     );
     setNominations(newNominations);
+    setNotif(['remove']);
   }
+
+  const notify = () => {
+    // bc unsure why it doesn't work when it's not an array.
+    if (notif[0] === 'add') {
+      constructNotification('Pinned successfully.', 'success');
+    } else if (notif[0] === 'still') {
+      constructNotification('Sorry, you can not have more than 5 pins :( Try to save something instead.', 'danger');
+    } else if (notif[0] === 'remove') {
+      constructNotification('Unpinned :o Don\'t worry, you can save, or add this back anytime.', 'warning');
+    }
+  }
+
+  const constructNotification = (message, type) => {
+    store.addNotification({
+      message: message,
+      type: type,
+      insert: "bottom",
+      container: "bottom-left",
+      animationIn: ["animate__animated", "animate__fadeIn"],
+      animationOut: ["animate__animated", "animate__fadeOut"],
+      dismiss: {
+        duration: 3000,
+        showIcon: true,
+      }
+    });
+  }
+
+  const addSuccessNotif = () => {
+    store.addNotification({
+      title: "Sucess!",
+      message: "You have successfully pinned an entertainment source.",
+      type: "success",
+      insert: "bottom",
+      container: "bottom-left",
+      animationIn: ["animate__animated", "animate__fadeIn"],
+      animationOut: ["animate__animated", "animate__fadeOut"],
+      dismiss: {
+        duration: 1000,
+        showIcon: true,
+      }
+    });
+  }
+
+  const addUnsuccessNotif = () => {
+    store.addNotification({
+      title: "Unsuccessful!",
+      message: "You have reached your pin limit.",
+      type: "danger",
+      insert: "bottom",
+      container: "bottom-left",
+      animationIn: ["animate__animated", "animate__fadeIn"],
+      animationOut: ["animate__animated", "animate__fadeOut"],
+      dismiss: {
+        duration: 1000,
+        showIcon: true,
+      }
+    });
+  }
+
+  const addWarningNotif = () => {
+    store.addNotification({
+      title: "Warning!",
+      message: "You have removed a pin.",
+      type: "warning",
+      insert: "bottom",
+      container: "bottom-left",
+      animationIn: ["animate__animated", "animate__fadeIn"],
+      animationOut: ["animate__animated", "animate__fadeOut"],
+      dismiss: {
+        duration: 1000,
+        showIcon: true,
+      }
+    });
+  }
+
+  useEffect(async() => {
+    notify();
+  }, [notif]);
 
   const getPost = () => {
     let post = 'Check out my pinned entertainment list:\n';
@@ -101,7 +184,7 @@ export default function GetMovies() {
   }
 
   let socialIcons = {'facebook': 'fab fa-facebook-f', 'twitter': 'fab fa-twitter', 'email': 'fas fa-paper-plane', 'link': 'fas fa-link'};
-  
+
   const Container = styled.div`
     display: flex;
     height: 100vh;
@@ -109,9 +192,10 @@ export default function GetMovies() {
 
   return (
     <Container>
+      <ReactNotification />
       <LeftMenu/>
       <MainPage querySearch={movieSearch} setQuerySearch={setMovieSearch} count={count} results={movies} loading={loading} addToList={addNominee} disabled={disabled} removeFromList={removeNominee}></MainPage>
-      <RightMenu cards={nominations} removeFromList={removeNominee} message={message} socialIcons={socialIcons} postInfo={postInfo}/>
+      <RightMenu cards={nominations} removeFromList={removeNominee} socialIcons={socialIcons} postInfo={postInfo}/>
     </Container>
   )
 }

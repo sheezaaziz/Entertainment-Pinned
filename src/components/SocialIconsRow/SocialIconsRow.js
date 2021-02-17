@@ -8,7 +8,6 @@ export default function SocialIconsRow({ socialIcons, postInfo }) {
   //   <SocialBtn Platform={platform}><i class={iconClass}></i></SocialBtn>
   // );
   // console.log(socialIcons['facebook']);
-  console.log(postInfo['facebook']);
   return (
     <Container>
       <SocialBtn Platform='facebook'>

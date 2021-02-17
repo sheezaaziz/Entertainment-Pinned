@@ -4,7 +4,6 @@ import Card from '../../components/Card/Card';
 import { CardsDisplayContainer } from './styles';
 
 export default function CardsDisplay({ cards, addToList, disabled, removeFromList }) {
-  console.log(cards);
   let allCards = cards.map((card, index) => (
     <Card
       title={card.Title}
