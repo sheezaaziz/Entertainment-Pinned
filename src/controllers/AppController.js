@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import ReactNotification from 'react-notifications-component'
+import ReactNotification from 'react-notifications-component';
 import { store } from 'react-notifications-component';
-import 'react-notifications-component/dist/theme.css'
+import 'react-notifications-component/dist/theme.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 import LeftMenu from '../sections/LeftMenu/LeftMenu';
 import MainPage from '../sections/MainPage/MainPage';
+import MainPageStill from '../sections/MainPage/MainPageStill';
 import RightMenu from '../sections/RightMenu/RightMenu';
 
 export default function GetMovies() {
@@ -59,7 +66,7 @@ export default function GetMovies() {
     if (nominations.length < 5) {
       let newNominations = [...nominations, {Title: movieTitle, Year: releaseYear, Poster: imgSrc, Type: type, imdbID: imdbID}];
       setNominations(newNominations);
-      // bc can not call addSuccessNotif fcn and have it create new notif directly from here. unsure why...
+      // bc can not call constructNotification and have it create new notif directly from here. unsure why... D;
       setNotif(['add'])
     }  else {
       setNotif(['still']);
@@ -79,7 +86,7 @@ export default function GetMovies() {
   }
 
   const notify = () => {
-    // bc unsure why it doesn't work when it's not an array.
+    // bc unsure why it doesn't work when it's not an array. :(
     if (notif[0] === 'add') {
       constructNotification('Pinned successfully.', 'success');
     } else if (notif[0] === 'still') {
@@ -104,54 +111,6 @@ export default function GetMovies() {
     });
   }
 
-  const addSuccessNotif = () => {
-    store.addNotification({
-      title: "Sucess!",
-      message: "You have successfully pinned an entertainment source.",
-      type: "success",
-      insert: "bottom",
-      container: "bottom-left",
-      animationIn: ["animate__animated", "animate__fadeIn"],
-      animationOut: ["animate__animated", "animate__fadeOut"],
-      dismiss: {
-        duration: 1000,
-        showIcon: true,
-      }
-    });
-  }
-
-  const addUnsuccessNotif = () => {
-    store.addNotification({
-      title: "Unsuccessful!",
-      message: "You have reached your pin limit.",
-      type: "danger",
-      insert: "bottom",
-      container: "bottom-left",
-      animationIn: ["animate__animated", "animate__fadeIn"],
-      animationOut: ["animate__animated", "animate__fadeOut"],
-      dismiss: {
-        duration: 1000,
-        showIcon: true,
-      }
-    });
-  }
-
-  const addWarningNotif = () => {
-    store.addNotification({
-      title: "Warning!",
-      message: "You have removed a pin.",
-      type: "warning",
-      insert: "bottom",
-      container: "bottom-left",
-      animationIn: ["animate__animated", "animate__fadeIn"],
-      animationOut: ["animate__animated", "animate__fadeOut"],
-      dismiss: {
-        duration: 1000,
-        showIcon: true,
-      }
-    });
-  }
-
   useEffect(async() => {
     notify();
   }, [notif]);
@@ -165,7 +124,7 @@ export default function GetMovies() {
     return post;
   }
 
-  let postInfo = {
+  const postInfo = {
     'facebook': {
       'url': 'sheezaaziz.com',
       'post': getPost(),
@@ -183,7 +142,8 @@ export default function GetMovies() {
     }
   }
 
-  let socialIcons = {'facebook': 'fab fa-facebook-f', 'twitter': 'fab fa-twitter', 'email': 'fas fa-paper-plane', 'link': 'fas fa-link'};
+  const socialIcons = {'facebook': 'fab fa-facebook-f', 'twitter': 'fab fa-twitter', 'email': 'fas fa-paper-plane', 'link': 'fas fa-link'};
+
 
   const Container = styled.div`
     display: flex;
@@ -191,11 +151,39 @@ export default function GetMovies() {
   `;
 
   return (
-    <Container>
-      <ReactNotification />
-      <LeftMenu/>
-      <MainPage querySearch={movieSearch} setQuerySearch={setMovieSearch} count={count} results={movies} loading={loading} addToList={addNominee} disabled={disabled} removeFromList={removeNominee}></MainPage>
-      <RightMenu cards={nominations} removeFromList={removeNominee} socialIcons={socialIcons} postInfo={postInfo}/>
-    </Container>
-  )
+    <Router>
+      <Container>
+        <ReactNotification/>
+        <LeftMenu/>
+        <Switch>
+          <Route exact path="/">
+            <MainPage querySearch={movieSearch} setQuerySearch={setMovieSearch} count={count} results={movies} loading={loading} addToList={addNominee} disabled={disabled} removeFromList={removeNominee} title={'Home'}></MainPage>
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/saved">
+            <MainPage querySearch={movieSearch} setQuerySearch={setMovieSearch} count={count} results={movies} loading={loading} addToList={addNominee} disabled={disabled} removeFromList={removeNominee} title={'Saved'}></MainPage>
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/contact">
+            <MainPageStill title={'Contact'}></MainPageStill>
+          </Route>
+        </Switch>
+        <RightMenu cards={nominations} removeFromList={removeNominee} socialIcons={socialIcons} postInfo={postInfo}/>
+      </Container>
+
+
+
+
+
+    </Router>
+  );
 }
+// <Container>
+//   <ReactNotification/>
+//   <LeftMenu/>
+//   <MainPage querySearch={movieSearch} setQuerySearch={setMovieSearch} count={count} results={movies} loading={loading} addToList={addNominee} disabled={disabled} removeFromList={removeNominee}></MainPage>
+//   <RightMenu cards={nominations} removeFromList={removeNominee} socialIcons={socialIcons} postInfo={postInfo}/>
+// </Container>
+//

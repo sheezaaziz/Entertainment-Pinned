@@ -9,10 +9,10 @@ import NumResults from '../../components/NumResults/NumResults';
 import CardsDisplay from '../CardsDisplay/CardsDisplay';
 import Loading from '../../components/Loading/Loading';
 
-export default function MainPage({ querySearch, setQuerySearch, count, results, loading, addToList, disabled, removeFromList }) {
+export default function MainPage({ querySearch, setQuerySearch, count, results, loading, addToList, disabled, removeFromList, title }) {
   return (
     <MainPageContainer>
-      <Title>Home</Title>
+      <Title>{title}</Title>
       <SearchInput querySearch={querySearch} setQuerySearch={setQuerySearch}/>
       <br/>
       <NumResults count={count}/>

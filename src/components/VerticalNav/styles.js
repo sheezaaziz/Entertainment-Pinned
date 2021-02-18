@@ -1,8 +1,14 @@
 import styled from 'styled-components';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+} from "react-router-dom";
 
 import colours from '../../config/colours';
 
-export const MenuItem = styled.div`
+export const StyledNavLink = styled(NavLink)`
   color: ${colours.backgroundLight};
   border-radius: 3em;
   border: 1px solid ${colours.backgroundLight};
@@ -13,4 +19,9 @@ export const MenuItem = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  &.active {
+    background-color: ${colours.backgroundLight};
+    color: ${colours.backgroundDark};
+  }
 `;
