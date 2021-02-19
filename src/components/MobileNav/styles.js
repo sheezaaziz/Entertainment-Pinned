@@ -1,6 +1,32 @@
 import styled from 'styled-components';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+} from "react-router-dom";
 
 import { device } from '../../config/device';
+import colours from '../../config/colours';
+
+export const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  display: block;
+  color: ${colours.primaryText};
+  margin-bottom: 15px;
+`;
+
+export const StyledPrimaryLink = styled(NavLink)`
+  margin-right: 45px;
+  float: right;
+  cursor: pointer;
+  color: ${colours.primaryText};
+
+  display: ${({MobileNavOpen}) =>
+  MobileNavOpen === false && 'inline-block' ||
+  'none'
+  };
+`;
 
 export const MobileNavContainer = styled.div`
   @media ${device.mobileS} {
@@ -47,17 +73,4 @@ export const MobileMenu = styled.div`
 
 export const CloseMenu = styled.div`
 
-`;
-
-export const OpenNominations = styled.div`
-  @media ${device.mobileS} {
-    margin-right: 45px;
-    float: right;
-    cursor: pointer;
-
-    display: ${({MobileNavOpen}) =>
-    MobileNavOpen === false && 'inline-block' ||
-    'none'
-    };
-  }
 `;

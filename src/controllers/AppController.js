@@ -15,6 +15,7 @@ import LeftMenu from '../sections/LeftMenu/LeftMenu';
 import MainPage from '../sections/MainPage/MainPage';
 import MainPageStill from '../sections/MainPage/MainPageStill';
 import RightMenu from '../sections/RightMenu/RightMenu';
+import MobileNav from '../components/MobileNav/MobileNav';
 
 export default function GetMovies() {
   const [movies, setMovies] = useState([]);
@@ -152,6 +153,7 @@ export default function GetMovies() {
 
   return (
     <Router>
+      <MobileNav/>
       <Container>
         <ReactNotification/>
         <LeftMenu/>
