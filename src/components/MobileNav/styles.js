@@ -17,7 +17,6 @@ export const MobileNavContainer = styled.div`
   @media ${device.laptop} {
     display: none;
   }
-
 `;
 
 export const OpenMenu = styled.div`
@@ -25,6 +24,11 @@ export const OpenMenu = styled.div`
     cursor: pointer;
     margin-left: 45px;
     display: inline-block;
+
+    display: ${({MobileNavOpen}) =>
+    MobileNavOpen === false && 'inline-block' ||
+    'none'
+    };
   }
 `;
 
@@ -33,8 +37,12 @@ export const MobileMenu = styled.div`
     cursor: pointer;
     margin-left: 45px;
     display: none;
-  }
 
+    display: ${({MobileNavOpen}) =>
+    MobileNavOpen === true && 'inline-block' ||
+    'none'
+    };
+  }
 `;
 
 export const CloseMenu = styled.div`
@@ -46,5 +54,10 @@ export const OpenNominations = styled.div`
     margin-right: 45px;
     float: right;
     cursor: pointer;
+
+    display: ${({MobileNavOpen}) =>
+    MobileNavOpen === false && 'inline-block' ||
+    'none'
+    };
   }
 `;

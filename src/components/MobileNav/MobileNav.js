@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { MobileNavContainer, OpenMenu, MobileMenu, CloseMenu, OpenNominations } from './styles';
 
 export default function MobileNav() {
-  const openMenu = document.querySelector('.OpenMenu');
+  // const openMenu = document.querySelector('.OpenMenu');
   // const mobileMenu = document.querySelector('MobileMenu');
   // const closeMenu = document.querySelector('CloseMenu');
   // const openNominations = document.querySelector('OpenNominations');
@@ -20,19 +20,17 @@ export default function MobileNav() {
   //   openNominations.style.display = 'inline-block';
   // })
 
-  const testFcn = (evt) => {
-    console.log("we testing..", evt);
-  }
+  const [MobileNavOpen, setMobileNavOpen] = useState(false);
 
   return (
     <MobileNavContainer>
-      <OpenMenu onClick={testFcn} className='OpenMenu'><i class="fas fa-bars"></i></OpenMenu>
-      <MobileMenu>
+      <OpenMenu onClick={() => setMobileNavOpen(!MobileNavOpen)} MobileNavOpen={MobileNavOpen}><i class="fas fa-bars"></i></OpenMenu>
+      <MobileMenu MobileNavOpen={MobileNavOpen}>
         <p><i class="fas fa-bookmark"></i> Saved</p>
         <p><i class="far fa-id-badge"></i> Contact</p>
-        <CloseMenu><i class="fas fa-times"></i></CloseMenu>
+        <CloseMenu onClick={() => setMobileNavOpen(!MobileNavOpen)}><i class="fas fa-times"></i></CloseMenu>
       </MobileMenu>
-      <OpenNominations><i class="fas fa-trophy"></i></OpenNominations>
+      <OpenNominations MobileNavOpen={MobileNavOpen}><i class="fas fa-trophy"></i></OpenNominations>
     </MobileNavContainer>
   )
 }

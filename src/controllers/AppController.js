@@ -156,7 +156,7 @@ export default function GetMovies() {
         <ReactNotification/>
         <LeftMenu/>
         <Switch>
-          <Route exact path="/">
+          <Route path="/home">
             <MainPage querySearch={movieSearch} setQuerySearch={setMovieSearch} count={count} results={movies} loading={loading} addToList={addNominee} disabled={disabled} removeFromList={removeNominee} title={'Home'}></MainPage>
           </Route>
         </Switch>
@@ -166,17 +166,17 @@ export default function GetMovies() {
           </Route>
         </Switch>
         <Switch>
+          <Route exact path="/">
+            <MainPageStill title={'Project Guide'}></MainPageStill>
+          </Route>
+        </Switch>
+        <Switch>
           <Route path="/contact">
             <MainPageStill title={'Contact'}></MainPageStill>
           </Route>
         </Switch>
         <RightMenu cards={nominations} removeFromList={removeNominee} socialIcons={socialIcons} postInfo={postInfo}/>
       </Container>
-
-
-
-
-
     </Router>
   );
 }

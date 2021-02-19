@@ -12,11 +12,15 @@ import { LeftMenuContainer, Container } from './styles';
 const iconsInfo = {
   'home': {
     'class': 'fas fa-home',
-    'path': '/',
+    'path': '/home',
   },
   'save': {
     'class': 'fas fa-bookmark',
     'path': '/saved',
+  },
+  'gear': {
+    'class': 'fas fa-cog',
+    'path': '/',
   },
   'contact': {
     'class': 'far fa-id-badge',
