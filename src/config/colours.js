@@ -1,4 +1,5 @@
 export default {
+  body: '#2c2a4a',
   blue: '#4361ee',
   orange: '#ff8500',
   danger: '#fe5e54',

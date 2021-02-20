@@ -128,17 +128,6 @@ export const CardBtn = styled.button`
     ` || Order == 2 && `
       margin-left: 10px;
     `}
-
-    // &:disabled {
-    //   background-color: #cccccc;
-    //   color: #666666;
-    // }
-    //
-    // &:disabled:hover {
-    //   transform: none;
-    //   box-shadow: none;
-    //   cursor: default;
-    // }
   }
 
   @media ${device.laptop} {
@@ -152,4 +141,3 @@ export const CardBtnPreview = styled(CardBtn)`
   opacity: 1;
   margin: auto;
 `;
-// background-color: ${props => props.nominate ? colours.orange : colours.blue}

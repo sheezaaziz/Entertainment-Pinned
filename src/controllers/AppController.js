@@ -8,7 +8,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 
 import LeftMenu from '../sections/LeftMenu/LeftMenu';
@@ -22,19 +21,18 @@ export default function GetMovies() {
   const [loading, setLoading] = useState(true);
   const [movieSearch, setMovieSearch] = useState('');
   const [count, setCount] = useState(0);
-  const [nominations, setNominations] = useState([]);
-  const [countNoms, setCountNoms] = useState(0);
+  const [pinned, setPins] = useState([]);
+  const [countPins, setCountPins] = useState(0);
   const [saved, setSaved] = useState([]);
   const [countSaved, setCountSaved] = useState(0);
   // quick temp fix. unsure why it has to be an array.
   const [notif, setNotif] = useState([]);
 
   let increment = 0;
-  const types = {'Nominations': nominations, 'Saved': saved};
+  const types = {'Nominations': pinned, 'Saved': saved};
 
   const getMovies = async (movieSearch, pageNum, movieList) => {
     pageNum += 1;
-
     let res = await getResults(movieSearch, pageNum);
     if (res.Response !== 'True') {
       return movieList;
@@ -66,13 +64,13 @@ export default function GetMovies() {
   }, [movieSearch]);
 
   // title, subtitle, img, type, id
-  const addNominee = (movieTitle, releaseYear, imgSrc, type, imdbID) => {
-    if (nominations.length < 5) {
-      let newNominations = [...nominations, {Title: movieTitle, Year: releaseYear, Poster: imgSrc, Type: type, imdbID: imdbID}];
-      setNominations(newNominations);
+  const addPin = (movieTitle, releaseYear, imgSrc, type, imdbID) => {
+    if (pinned.length < 5) {
+      let newNominations = [...pinned, {Title: movieTitle, Year: releaseYear, Poster: imgSrc, Type: type, imdbID: imdbID}];
+      setPins(newNominations);
       // bc can not call constructNotification and have it create new notif directly from here. unsure why... D;
       setNotif(['addPin'])
-      setCountNoms(countNoms + 1);
+      setCountPins(countPins + 1);
     }  else {
       setNotif(['limitPin']);
     }
@@ -95,37 +93,14 @@ export default function GetMovies() {
     );
     switch(group) {
       case 'Nominations':
-        setNominations(newList);
-        setCountNoms(countNoms - 1);
+        setPins(newList);
+        setCountPins(countPins - 1);
         setNotif(['removePin']);
         break;
       case 'Saved':
         setSaved(newList);
         setCountSaved(countSaved - 1);
         setNotif(['removeSave']);
-        break;
-      default:
-        break;
-    }
-  }
-
-  const notify = () => {
-    // bc unsure why it doesn't work when it's not an array. :(
-    switch(notif[0]) {
-      case 'addPin':
-        constructNotification('Pinned successfully.', 'success');
-        break;
-      case 'limitPin':
-        constructNotification('Sorry, you can not have more than 5 pins :( Try to save something instead.', 'danger');
-        break;
-      case 'removePin':
-        constructNotification('Unpinned :o Don\'t worry, you can save, or add this back anytime.', 'warning');
-        break;
-      case 'addSave':
-        constructNotification('Saved successfully.', 'success');
-        break;
-      case 'removeSave':
-        constructNotification('Unsaved :o Don\'t worry, you can save, or add this back anytime.', 'warning');
         break;
       default:
         break;
@@ -148,13 +123,32 @@ export default function GetMovies() {
   }
 
   useEffect(async() => {
-    notify();
+    // bc unsure why it doesn't work when it's not an array. :(
+    switch(notif[0]) {
+      case 'addPin':
+        constructNotification('Pinned successfully.', 'success');
+        break;
+      case 'limitPin':
+        constructNotification('Sorry, you can not have more than 5 pins :( Try to save something instead.', 'danger');
+        break;
+      case 'removePin':
+        constructNotification('Unpinned :o Don\'t worry, you can save, or add this back anytime.', 'warning');
+        break;
+      case 'addSave':
+        constructNotification('Saved successfully.', 'success');
+        break;
+      case 'removeSave':
+        constructNotification('Unsaved :o Don\'t worry, you can save, or add this back anytime.', 'warning');
+        break;
+      default:
+        break;
+    }
   }, [notif]);
 
   const getPost = () => {
     let post = 'Check out my pinned entertainment list:\n';
-    nominations.forEach((nomination) => {
-      post += `${nomination.Title}\n`;
+    pinned.forEach((pin) => {
+      post += `${pin.Title}\n`;
     })
     post += '\nUse sheezaaziz.com to pin and save your favourite digital entertainment sources.';
     return post;
@@ -193,12 +187,12 @@ export default function GetMovies() {
         <LeftMenu/>
         <Switch>
           <Route path="/home">
-            <MainPage querySearch={movieSearch} setQuerySearch={setMovieSearch} count={count} results={movies} loading={loading} addToList={addNominee} disabled={disabled} removeItem={removeItem} title={'Home'} saveItem={addSave}></MainPage>
+            <MainPage querySearch={movieSearch} setQuerySearch={setMovieSearch} count={count} results={movies} loading={loading} addToList={addPin} disabled={disabled} removeItem={removeItem} title={'Home'} saveItem={addSave}></MainPage>
           </Route>
         </Switch>
         <Switch>
           <Route path="/saved">
-            <MainPage count={countSaved} results={saved} loading={loading} addToList={addNominee} disabled={disabled} removeItem={removeItem} title={'Saved'} saveItem={addSave}></MainPage>
+            <MainPage count={countSaved} results={saved} loading={loading} addToList={addPin} disabled={disabled} removeItem={removeItem} title={'Saved'} saveItem={addSave}></MainPage>
           </Route>
         </Switch>
         <Switch>
@@ -213,10 +207,10 @@ export default function GetMovies() {
         </Switch>
         <Switch>
           <Route path="/pinned">
-            <MainPage count={countNoms} results={nominations} loading={loading} addToList={addNominee} disabled={disabled} removeItem={removeItem} title={'Pinned'} saveItem={addSave}></MainPage>
+            <MainPage count={countPins} results={pinned} loading={loading} addToList={addPin} disabled={disabled} removeItem={removeItem} title={'Pinned'} saveItem={addSave}></MainPage>
           </Route>
         </Switch>
-        <RightMenu cards={nominations} removeItem={removeItem} socialIcons={socialIcons} postInfo={postInfo}/>
+        <RightMenu cards={pinned} removeItem={removeItem} socialIcons={socialIcons} postInfo={postInfo}/>
       </Container>
     </Router>
   );

@@ -4,10 +4,6 @@ import { FacebookShareButton, TwitterShareButton, EmailShareButton } from 'react
 import { Container, SocialBtn } from './styles';
 
 export default function SocialIconsRow({ socialIcons, postInfo }) {
-  // let allSocialMediaBtns = Object.entries(socialIcons).map(([platform, iconClass]) =>
-  //   <SocialBtn Platform={platform}><i class={iconClass}></i></SocialBtn>
-  // );
-  // console.log(socialIcons['facebook']);
   return (
     <Container>
       <SocialBtn Platform='facebook'>

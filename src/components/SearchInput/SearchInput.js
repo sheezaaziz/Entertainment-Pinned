@@ -7,7 +7,6 @@ export default function SearchInput({ setQuerySearch }) {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data.query);
     setQuerySearch(data.query);
   }
 

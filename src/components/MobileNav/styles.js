@@ -1,10 +1,5 @@
 import styled from 'styled-components';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  NavLink,
-} from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 import { device } from '../../config/device';
 import colours from '../../config/colours';
@@ -35,7 +30,7 @@ export const MobileNavContainer = styled.div`
     position: sticky;
     font-size: 1.25em;
     top: 0;
-    background-color: #2c2a4a;
+    background-color: ${colours.body};
     z-index: 1;
     display: block;
   }

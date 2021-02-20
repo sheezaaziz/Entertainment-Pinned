@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import { CardDiv, CardImg, CardDetails, CardDetailsDescr, CardTitle, CardSubtitle, CardDetailsMore, CardRating, CardExternalLink, CardBtns, CardBtn } from './styles';
 import Image_Unavailable from './Image_Unavailable.jpg';
@@ -57,13 +56,3 @@ export default function Card({ title, subtitle, type, img, id, addToList, disabl
     </CardDiv>
   )
 }
-
-// onClick={() => addToList(title, subtitle, img, type, id)}
-
-// <CardBtn
-//   Order={2}
-//   disabled={disabled(id)}
-//   onClick={() => addToList(title, subtitle, img, type, id)}>
-//   <i className="fas fa-trophy"></i>
-// </CardBtn>
-//

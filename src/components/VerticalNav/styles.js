@@ -1,10 +1,5 @@
 import styled from 'styled-components';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  NavLink,
-} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import colours from '../../config/colours';
 
