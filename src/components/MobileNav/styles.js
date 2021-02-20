@@ -17,7 +17,7 @@ export const StyledNavLink = styled(NavLink)`
 `;
 
 export const StyledPrimaryLink = styled(NavLink)`
-  margin-right: 45px;
+  margin-right: 35px;
   float: right;
   cursor: pointer;
   color: ${colours.primaryText};
@@ -48,7 +48,7 @@ export const MobileNavContainer = styled.div`
 export const OpenMenu = styled.div`
   @media ${device.mobileS} {
     cursor: pointer;
-    margin-left: 45px;
+    margin-left: 35px;
     display: inline-block;
 
     display: ${({MobileNavOpen}) =>
@@ -61,7 +61,7 @@ export const OpenMenu = styled.div`
 export const MobileMenu = styled.div`
   @media ${device.mobileS} {
     cursor: pointer;
-    margin-left: 45px;
+    margin-left: 35px;
     display: none;
 
     display: ${({MobileNavOpen}) =>

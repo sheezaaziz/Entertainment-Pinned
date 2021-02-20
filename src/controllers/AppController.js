@@ -23,6 +23,7 @@ export default function GetMovies() {
   const [movieSearch, setMovieSearch] = useState('');
   const [count, setCount] = useState(0);
   const [nominations, setNominations] = useState([]);
+  const [countNoms, setCountNoms] = useState(0);
   const [saved, setSaved] = useState([]);
   const [countSaved, setCountSaved] = useState(0);
   // quick temp fix. unsure why it has to be an array.
@@ -70,9 +71,10 @@ export default function GetMovies() {
       let newNominations = [...nominations, {Title: movieTitle, Year: releaseYear, Poster: imgSrc, Type: type, imdbID: imdbID}];
       setNominations(newNominations);
       // bc can not call constructNotification and have it create new notif directly from here. unsure why... D;
-      setNotif(['add'])
+      setNotif(['addPin'])
+      setCountNoms(countNoms + 1);
     }  else {
-      setNotif(['still']);
+      setNotif(['limitPin']);
     }
   }
 
@@ -80,6 +82,7 @@ export default function GetMovies() {
     let newSaved = [...saved, {Title: movieTitle, Year: releaseYear, Poster: imgSrc, Type: type, imdbID: imdbID}];
     setSaved(newSaved);
     setCountSaved(countSaved + 1);
+    setNotif(['addSave']);
   }
 
   const disabled = (imdbID, group) => {
@@ -93,10 +96,13 @@ export default function GetMovies() {
     switch(group) {
       case 'Nominations':
         setNominations(newList);
+        setCountNoms(countNoms - 1);
+        setNotif(['removePin']);
         break;
       case 'Saved':
         setSaved(newList);
         setCountSaved(countSaved - 1);
+        setNotif(['removeSave']);
         break;
       default:
         break;
@@ -105,12 +111,24 @@ export default function GetMovies() {
 
   const notify = () => {
     // bc unsure why it doesn't work when it's not an array. :(
-    if (notif[0] === 'add') {
-      constructNotification('Pinned successfully.', 'success');
-    } else if (notif[0] === 'still') {
-      constructNotification('Sorry, you can not have more than 5 pins :( Try to save something instead.', 'danger');
-    } else if (notif[0] === 'remove') {
-      constructNotification('Unpinned :o Don\'t worry, you can save, or add this back anytime.', 'warning');
+    switch(notif[0]) {
+      case 'addPin':
+        constructNotification('Pinned successfully.', 'success');
+        break;
+      case 'limitPin':
+        constructNotification('Sorry, you can not have more than 5 pins :( Try to save something instead.', 'danger');
+        break;
+      case 'removePin':
+        constructNotification('Unpinned :o Don\'t worry, you can save, or add this back anytime.', 'warning');
+        break;
+      case 'addSave':
+        constructNotification('Saved successfully.', 'success');
+        break;
+      case 'removeSave':
+        constructNotification('Unsaved :o Don\'t worry, you can save, or add this back anytime.', 'warning');
+        break;
+      default:
+        break;
     }
   }
 
@@ -191,6 +209,11 @@ export default function GetMovies() {
         <Switch>
           <Route path="/contact">
             <MainPageStill title={'Contact'}></MainPageStill>
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/pinned">
+            <MainPage count={countNoms} results={nominations} loading={loading} addToList={addNominee} disabled={disabled} removeItem={removeItem} title={'Pinned'} saveItem={addSave}></MainPage>
           </Route>
         </Switch>
         <RightMenu cards={nominations} removeItem={removeItem} socialIcons={socialIcons} postInfo={postInfo}/>
