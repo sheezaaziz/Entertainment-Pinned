@@ -24,6 +24,7 @@ export default function GetMovies() {
   const [count, setCount] = useState(0);
   const [nominations, setNominations] = useState([]);
   const [saved, setSaved] = useState([]);
+  const [countSaved, setCountSaved] = useState(0);
   // quick temp fix. unsure why it has to be an array.
   const [notif, setNotif] = useState([]);
 
@@ -63,7 +64,6 @@ export default function GetMovies() {
     setLoading(false);
   }, [movieSearch]);
 
-
   // title, subtitle, img, type, id
   const addNominee = (movieTitle, releaseYear, imgSrc, type, imdbID) => {
     if (nominations.length < 5) {
@@ -79,6 +79,7 @@ export default function GetMovies() {
   const addSave = (movieTitle, releaseYear, imgSrc, type, imdbID) => {
     let newSaved = [...saved, {Title: movieTitle, Year: releaseYear, Poster: imgSrc, Type: type, imdbID: imdbID}];
     setSaved(newSaved);
+    setCountSaved(countSaved + 1);
   }
 
   const disabled = (imdbID, group) => {
@@ -95,6 +96,7 @@ export default function GetMovies() {
         break;
       case 'Saved':
         setSaved(newList);
+        setCountSaved(countSaved - 1);
         break;
       default:
         break;
@@ -178,7 +180,7 @@ export default function GetMovies() {
         </Switch>
         <Switch>
           <Route path="/saved">
-            <MainPage querySearch={movieSearch} setQuerySearch={setMovieSearch} count={count} results={movies} loading={loading} addToList={addNominee} disabled={disabled} removeItem={removeItem} title={'Saved'} saveItem={addSave}></MainPage>
+            <MainPage count={countSaved} results={saved} loading={loading} addToList={addNominee} disabled={disabled} removeItem={removeItem} title={'Saved'} saveItem={addSave}></MainPage>
           </Route>
         </Switch>
         <Switch>

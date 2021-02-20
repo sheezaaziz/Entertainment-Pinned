@@ -13,8 +13,11 @@ export default function MainPage({ querySearch, setQuerySearch, count, results, 
   return (
     <MainPageContainer>
       <Title>{title}</Title>
-      <SearchInput querySearch={querySearch} setQuerySearch={setQuerySearch}/>
-      <br/>
+      { setQuerySearch || querySearch ?
+        <SearchInput querySearch={querySearch} setQuerySearch={setQuerySearch}/>
+        :
+        <span></span>
+      }
       <NumResults count={count}/>
       { loading ? <Loading/> : <CardsDisplay cards={results} addToList={addToList} disabled={disabled} removeItem={removeItem} saveItem={saveItem}/> }
     </MainPageContainer>
