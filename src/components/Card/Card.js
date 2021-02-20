@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { CardDiv, CardImg, CardDetails, CardDetailsDescr, CardTitle, CardSubtitle, CardDetailsMore, CardRating, CardExternalLink, CardBtns, CardBtn } from './styles';
 import Image_Unavailable from './Image_Unavailable.jpg';
 
-export default function Card({ title, subtitle, type, img, id, addToList, disabled, removeFromList }) {
+export default function Card({ title, subtitle, type, img, id, addToList, disabled, removeItem, saveItem }) {
   let externalLink = `https://www.imdb.com/title/${id}`;
   if (img === 'N/A') {
     img = Image_Unavailable;
@@ -23,15 +23,25 @@ export default function Card({ title, subtitle, type, img, id, addToList, disabl
         </CardDetailsMore>
       </CardDetails>
       <CardBtns>
-        <CardBtn
-          Order={1}>
-          <i className="fas fa-bookmark"></i>
-        </CardBtn>
-
-        { disabled(id) ?
+        { disabled(id, 'Saved') ?
+          <CardBtn
+            Order={1}
+            onClick={() => removeItem(id, 'Saved')}
+            Danger={true}>
+            <i className="fas fa-times"></i>
+          </CardBtn>
+          :
+          <CardBtn
+            Order={1}
+            onClick={() => saveItem(title, subtitle, img, type, id)}
+            Danger={false}>
+            <i className="fas fa-bookmark"></i>
+          </CardBtn>
+        }
+        { disabled(id, 'Nominations') ?
           <CardBtn
             Order={2}
-            onClick={() => removeFromList(id)}
+            onClick={() => removeItem(id, 'Nominations')}
             Danger={true}>
             <i className="fas fa-times"></i>
           </CardBtn>

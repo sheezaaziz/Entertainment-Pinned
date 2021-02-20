@@ -23,10 +23,12 @@ export default function GetMovies() {
   const [movieSearch, setMovieSearch] = useState('');
   const [count, setCount] = useState(0);
   const [nominations, setNominations] = useState([]);
+  const [saved, setSaved] = useState([]);
   // quick temp fix. unsure why it has to be an array.
   const [notif, setNotif] = useState([]);
 
   let increment = 0;
+  const types = {'Nominations': nominations, 'Saved': saved};
 
   const getMovies = async (movieSearch, pageNum, movieList) => {
     pageNum += 1;
@@ -74,16 +76,29 @@ export default function GetMovies() {
     }
   }
 
-  const disabled = (imdbID) => {
-    return nominations.find(nomination => nomination.imdbID ===  imdbID) !== undefined;
+  const addSave = (movieTitle, releaseYear, imgSrc, type, imdbID) => {
+    let newSaved = [...saved, {Title: movieTitle, Year: releaseYear, Poster: imgSrc, Type: type, imdbID: imdbID}];
+    setSaved(newSaved);
   }
 
-  const removeNominee = (imdbID) => {
-    let newNominations = nominations.filter(
-      (nominee) => nominee.imdbID !== imdbID
+  const disabled = (imdbID, group) => {
+    return types[group].find(t => t.imdbID ===  imdbID) !== undefined;
+  };
+
+  const removeItem = (imdbID, group) => {
+    let newList = types[group].filter(
+      t => t.imdbID !== imdbID
     );
-    setNominations(newNominations);
-    setNotif(['remove']);
+    switch(group) {
+      case 'Nominations':
+        setNominations(newList);
+        break;
+      case 'Saved':
+        setSaved(newList);
+        break;
+      default:
+        break;
+    }
   }
 
   const notify = () => {
@@ -145,7 +160,6 @@ export default function GetMovies() {
 
   const socialIcons = {'facebook': 'fab fa-facebook-f', 'twitter': 'fab fa-twitter', 'email': 'fas fa-paper-plane', 'link': 'fas fa-link'};
 
-
   const Container = styled.div`
     display: flex;
     height: 100vh;
@@ -159,12 +173,12 @@ export default function GetMovies() {
         <LeftMenu/>
         <Switch>
           <Route path="/home">
-            <MainPage querySearch={movieSearch} setQuerySearch={setMovieSearch} count={count} results={movies} loading={loading} addToList={addNominee} disabled={disabled} removeFromList={removeNominee} title={'Home'}></MainPage>
+            <MainPage querySearch={movieSearch} setQuerySearch={setMovieSearch} count={count} results={movies} loading={loading} addToList={addNominee} disabled={disabled} removeItem={removeItem} title={'Home'} saveItem={addSave}></MainPage>
           </Route>
         </Switch>
         <Switch>
           <Route path="/saved">
-            <MainPage querySearch={movieSearch} setQuerySearch={setMovieSearch} count={count} results={movies} loading={loading} addToList={addNominee} disabled={disabled} removeFromList={removeNominee} title={'Saved'}></MainPage>
+            <MainPage querySearch={movieSearch} setQuerySearch={setMovieSearch} count={count} results={movies} loading={loading} addToList={addNominee} disabled={disabled} removeItem={removeItem} title={'Saved'} saveItem={addSave}></MainPage>
           </Route>
         </Switch>
         <Switch>
@@ -177,15 +191,8 @@ export default function GetMovies() {
             <MainPageStill title={'Contact'}></MainPageStill>
           </Route>
         </Switch>
-        <RightMenu cards={nominations} removeFromList={removeNominee} socialIcons={socialIcons} postInfo={postInfo}/>
+        <RightMenu cards={nominations} removeItem={removeItem} socialIcons={socialIcons} postInfo={postInfo}/>
       </Container>
     </Router>
   );
 }
-// <Container>
-//   <ReactNotification/>
-//   <LeftMenu/>
-//   <MainPage querySearch={movieSearch} setQuerySearch={setMovieSearch} count={count} results={movies} loading={loading} addToList={addNominee} disabled={disabled} removeFromList={removeNominee}></MainPage>
-//   <RightMenu cards={nominations} removeFromList={removeNominee} socialIcons={socialIcons} postInfo={postInfo}/>
-// </Container>
-//

@@ -3,7 +3,7 @@ import React from 'react';
 import { CardDivPreview, CardImgPreview, CardDetails, CardDetailsDescr, CardTitle, CardSubtitle, CardDetailsMore, CardRating, CardExternalLink, CardBtns, CardBtnPreview } from './styles';
 import Image_Unavailable from './Image_Unavailable.jpg';
 
-export default function CardPreview({ title, subtitle, type, img, id, removeFromList }) {
+export default function CardPreview({ title, subtitle, type, img, id, removeItem }) {
   let externalLink = `https://www.imdb.com/title/${id}`;
   if (img === 'N/A') {
     img = Image_Unavailable;
@@ -23,7 +23,7 @@ export default function CardPreview({ title, subtitle, type, img, id, removeFrom
       </CardDetails>
       <CardBtns>
         <CardBtnPreview
-          onClick={() => removeFromList(id)}>
+          onClick={() => removeItem(id, 'Nominations')}>
           <i className="fas fa-times"></i>
         </CardBtnPreview>
       </CardBtns>

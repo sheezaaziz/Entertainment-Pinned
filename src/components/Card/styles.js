@@ -116,7 +116,8 @@ export const CardBtn = styled.button`
     }
 
     background-color: ${({Order, Danger}) =>
-    Order === 1 && `${colours.blue}` ||
+    Order === 1 && Danger === false && `${colours.blue}` ||
+    Order === 1 && Danger === true && `${colours.danger}` ||
     Order === 2 && Danger === true && `${colours.danger}` ||
     `${colours.orange}`
     };

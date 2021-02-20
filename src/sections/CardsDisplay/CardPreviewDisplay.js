@@ -3,7 +3,7 @@ import React from 'react';
 import { CardPreviewDisplayContainer } from './styles';
 import CardPreview from '../../components/Card/CardPreview';
 
-export default function CardPreviewDisplay({ cards, removeFromList }) {
+export default function CardPreviewDisplay({ cards, removeItem }) {
   let allCards = cards.map((card, index) => (
     <CardPreview
       title={card.Title}
@@ -11,7 +11,7 @@ export default function CardPreviewDisplay({ cards, removeFromList }) {
       type={card.Type}
       img={card.Poster}
       id={card.imdbID}
-      removeFromList={removeFromList}/>
+      removeItem={removeItem}/>
   ))
   return (
     <CardPreviewDisplayContainer>

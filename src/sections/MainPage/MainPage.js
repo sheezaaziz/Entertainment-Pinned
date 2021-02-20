@@ -9,14 +9,14 @@ import NumResults from '../../components/NumResults/NumResults';
 import CardsDisplay from '../CardsDisplay/CardsDisplay';
 import Loading from '../../components/Loading/Loading';
 
-export default function MainPage({ querySearch, setQuerySearch, count, results, loading, addToList, disabled, removeFromList, title }) {
+export default function MainPage({ querySearch, setQuerySearch, count, results, loading, addToList, disabled, removeItem, title, saveItem }) {
   return (
     <MainPageContainer>
       <Title>{title}</Title>
       <SearchInput querySearch={querySearch} setQuerySearch={setQuerySearch}/>
       <br/>
       <NumResults count={count}/>
-      { loading ? <Loading/> : <CardsDisplay cards={results} addToList={addToList} disabled={disabled} removeFromList={removeFromList}/> }
+      { loading ? <Loading/> : <CardsDisplay cards={results} addToList={addToList} disabled={disabled} removeItem={removeItem} saveItem={saveItem}/> }
     </MainPageContainer>
   )
 }
