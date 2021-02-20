@@ -10,5 +10,5 @@ export default {
   secondaryBackground: '#5B4D88',
   facebook: '#4267B2',
   twitter: '#1DA1F2',
-  link: '#FF00BF',
+  reddit: '#FF5700',
 }

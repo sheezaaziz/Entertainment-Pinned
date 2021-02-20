@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CardDiv, CardImg, CardDetails, CardDetailsDescr, CardTitle, CardSubtitle, CardDetailsMore, CardRating, CardExternalLink, CardBtns, CardBtn } from './styles';
+import { CardDiv, CardImg, CardDetails, CardDetailsDescr, CardTitle, CardSubtitle, CardDetailsMore, CardType, CardExternalLink, CardBtns, CardBtn } from './styles';
 import Image_Unavailable from './Image_Unavailable.jpg';
 
 export default function Card({ title, subtitle, type, img, id, addToList, disabled, removeItem, saveItem }) {
@@ -17,7 +17,7 @@ export default function Card({ title, subtitle, type, img, id, addToList, disabl
           <CardSubtitle>{subtitle}</CardSubtitle>
         </CardDetailsDescr>
         <CardDetailsMore>
-          <CardRating>{type}</CardRating>
+          <CardType>{type}</CardType>
           <CardExternalLink href={externalLink} target="_blank">info <i className="fas fa-external-link-alt"></i></CardExternalLink>
         </CardDetailsMore>
       </CardDetails>

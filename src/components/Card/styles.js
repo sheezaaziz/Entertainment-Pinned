@@ -80,7 +80,7 @@ export const CardDetailsMore = styled.div`
   padding-right: 10px;
 `;
 
-export const CardRating = styled.p`
+export const CardType = styled.p`
   margin: 0;
   font-size: 1em;
   margin-top: 15px;

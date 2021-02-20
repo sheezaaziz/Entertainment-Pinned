@@ -1,5 +1,5 @@
 import React from 'react';
-import { FacebookShareButton, TwitterShareButton, EmailShareButton } from 'react-share';
+import { FacebookShareButton, TwitterShareButton, EmailShareButton, RedditShareButton } from 'react-share';
 
 import { Container, SocialBtn } from './styles';
 
@@ -31,8 +31,12 @@ export default function SocialIconsRow({ socialIcons, postInfo }) {
           <i class={socialIcons['email']}></i>
         </EmailShareButton>
       </SocialBtn>
-      <SocialBtn Platform='link'>
-        <i class={socialIcons['link']}></i>
+      <SocialBtn Platform='reddit'>
+        <RedditShareButton
+          url={postInfo['reddit']['url']}
+          title={postInfo['reddit']['title']}>
+          <i class="fab fa-reddit-alien"></i>
+        </RedditShareButton>
       </SocialBtn>
     </Container>
   )

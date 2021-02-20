@@ -19,7 +19,7 @@ export const SocialIconBtn = styled.button`
   color: ${({Platform}) =>
   Platform === 'facebook' && `${colours.facebook}` ||
   Platform === 'twitter' && `${colours.twitter}` ||
-  Platform === 'link' && `${colours.link}` ||
-  `${colours.orange}`
+  Platform === 'reddit' && `${colours.reddit}` ||
+  `${colours.primaryText}`
   };
 `;

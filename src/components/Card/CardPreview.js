@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CardDivPreview, CardImgPreview, CardDetails, CardDetailsDescr, CardTitle, CardSubtitle, CardDetailsMore, CardRating, CardExternalLink, CardBtns, CardBtnPreview } from './styles';
+import { CardDivPreview, CardImgPreview, CardDetails, CardDetailsDescr, CardTitle, CardSubtitle, CardDetailsMore, CardType, CardExternalLink, CardBtns, CardBtnPreview } from './styles';
 import Image_Unavailable from './Image_Unavailable.jpg';
 
 export default function CardPreview({ title, subtitle, type, img, id, removeItem }) {
@@ -17,7 +17,7 @@ export default function CardPreview({ title, subtitle, type, img, id, removeItem
           <CardSubtitle>{ subtitle }</CardSubtitle>
         </CardDetailsDescr>
         <CardDetailsMore>
-          <CardRating>{ type }</CardRating>
+          <CardType>{ type }</CardType>
           <CardExternalLink href={externalLink} target="_blank">info <i className="fas fa-external-link-alt"></i></CardExternalLink>
         </CardDetailsMore>
       </CardDetails>

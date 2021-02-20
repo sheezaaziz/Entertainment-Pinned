@@ -4,17 +4,14 @@ import styled from 'styled-components';
 import ReactNotification from 'react-notifications-component';
 import { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import LeftMenu from '../sections/LeftMenu/LeftMenu';
 import MainPage from '../sections/MainPage/MainPage';
 import MainPageStill from '../sections/MainPage/MainPageStill';
 import RightMenu from '../sections/RightMenu/RightMenu';
 import MobileNav from '../components/MobileNav/MobileNav';
+import { url } from '../config/links';
 
 export default function GetMovies() {
   const [movies, setMovies] = useState([]);
@@ -150,13 +147,13 @@ export default function GetMovies() {
     pinned.forEach((pin) => {
       post += `${pin.Title}\n`;
     })
-    post += '\nUse sheezaaziz.com to pin and save your favourite digital entertainment sources.';
+    post += `\nUse ${url} to pin and save your favourite digital entertainment sources.`;
     return post;
   }
 
   const postInfo = {
     'facebook': {
-      'url': 'sheezaaziz.com',
+      'url': `${url}`,
       'post': getPost(),
       'hashtag': '#EntertainmentPinned'
     },
@@ -166,9 +163,13 @@ export default function GetMovies() {
       'hashtags': ['EntertainmentPinned']
     },
     'email': {
-      'url': '',
+      'url': ' ',
       'subject': 'My Pinned Entertainment List',
       'post': getPost()
+    },
+    'reddit': {
+      'url': `${url}`,
+      'title': getPost(),
     }
   }
 

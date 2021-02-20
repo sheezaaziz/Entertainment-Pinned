@@ -22,3 +22,5 @@ export const primaryLink = {
   'class': 'fas fa-thumbtack',
   'path': '/pinned',
 }
+
+export const url = 'temp.com';
