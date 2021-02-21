@@ -51,7 +51,6 @@ export default function Card({ title, subtitle, type, img, id, addToList, disabl
              <i className="fas fa-trophy"></i>
            </CardBtn>
         }
-
       </CardBtns>
     </CardDiv>
   )

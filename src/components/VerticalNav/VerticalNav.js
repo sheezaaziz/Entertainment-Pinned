@@ -6,9 +6,9 @@ import links from '../../config/links';
 
 export default function VerticalNav() {
   const VerticalNavList = Object.keys(links).map((key, val) => (
-    <StyledNavLink exact to={links[key]['path']}>
+    <StyledNavLink exact to={links[key]['path']} key={key}>
       <h2>
-        <i class={links[key]['class']}></i>
+        <i className={links[key]['class']}></i>
       </h2>
     </StyledNavLink>
   ))

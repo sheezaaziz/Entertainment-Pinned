@@ -11,7 +11,7 @@ export default function SocialIconsRow({ socialIcons, postInfo }) {
           url={postInfo['facebook']['url']}
           quote={postInfo['facebook']['post']}
           hashtag={postInfo['facebook']['hashtag']}>
-          <i class={socialIcons['facebook']}></i>
+          <i className={socialIcons['facebook']}></i>
         </FacebookShareButton>
       </SocialBtn>
       <SocialBtn Platform='twitter'>
@@ -20,7 +20,7 @@ export default function SocialIconsRow({ socialIcons, postInfo }) {
           url={postInfo['twitter']['url']}
           hashtags={postInfo['twitter']['hashtags']}
           >
-          <i class={socialIcons['twitter']}></i>
+          <i className={socialIcons['twitter']}></i>
         </TwitterShareButton>
       </SocialBtn>
       <SocialBtn Platform='email'>
@@ -28,14 +28,14 @@ export default function SocialIconsRow({ socialIcons, postInfo }) {
           subject={postInfo['email']['subject']}
           body={postInfo['email']['post']}
           url={postInfo['email']['url']}>
-          <i class={socialIcons['email']}></i>
+          <i className={socialIcons['email']}></i>
         </EmailShareButton>
       </SocialBtn>
       <SocialBtn Platform='reddit'>
         <RedditShareButton
           url={postInfo['reddit']['url']}
           title={postInfo['reddit']['title']}>
-          <i class="fab fa-reddit-alien"></i>
+          <i className="fab fa-reddit-alien"></i>
         </RedditShareButton>
       </SocialBtn>
     </Container>

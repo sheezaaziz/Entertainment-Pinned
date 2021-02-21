@@ -7,7 +7,7 @@ import logo from '../../config/logo';
 export default function LeftMenu() {
   return (
       <LeftMenuContainer>
-        <h1><i class={logo['class']}></i></h1>
+        <h1><i className={logo['class']}></i></h1>
         <Container>
             <VerticalNav/>
         </Container>

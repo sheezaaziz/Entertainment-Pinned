@@ -23,4 +23,4 @@ export const primaryLink = {
   'path': '/pinned',
 }
 
-export const url = 'temp.com';
+export const url = 'https://entertainment-pinned.netlify.app/';

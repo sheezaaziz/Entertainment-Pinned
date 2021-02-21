@@ -8,19 +8,19 @@ export default function MobileNav() {
   const [MobileNavOpen, setMobileNavOpen] = useState(false);
 
   const NavList = Object.keys(links).map((key, val) => (
-    <StyledNavLink exact to={links[key]['path']}>
-      <i class={links[key]['class']}></i> {key}
+    <StyledNavLink exact to={links[key]['path']} key={key}>
+      <i className={links[key]['class']}></i> {key}
     </StyledNavLink>
   ));
 
   return (
     <MobileNavContainer>
-      <OpenMenu onClick={() => setMobileNavOpen(!MobileNavOpen)} MobileNavOpen={MobileNavOpen}><i class="fas fa-bars"></i></OpenMenu>
+      <OpenMenu onClick={() => setMobileNavOpen(!MobileNavOpen)} MobileNavOpen={MobileNavOpen}><i className="fas fa-bars"></i></OpenMenu>
       <MobileMenu MobileNavOpen={MobileNavOpen}>
         {NavList}
-        <CloseMenu onClick={() => setMobileNavOpen(!MobileNavOpen)}><i class="fas fa-times"></i></CloseMenu>
+        <CloseMenu onClick={() => setMobileNavOpen(!MobileNavOpen)}><i className="fas fa-times"></i></CloseMenu>
       </MobileMenu>
-      <StyledPrimaryLink MobileNavOpen={MobileNavOpen} exact to={primaryLink['path']}><i class={primaryLink['class']}></i></StyledPrimaryLink>
+      <StyledPrimaryLink MobileNavOpen={MobileNavOpen} exact to={primaryLink['path']}><i className={primaryLink['class']}></i></StyledPrimaryLink>
     </MobileNavContainer>
   )
 }
